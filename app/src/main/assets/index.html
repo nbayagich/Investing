@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+    var data_array = [
+    ['Time', 'Account Value'],
+    ['0', 100]
+    ];
+
+    function addDataToChart(time, accountNum)
+    {
+        var d = [[time, parseInt(accountNum)]];
+        data_array.push.apply(data_array, d);
+        drawChart();
+    }
+
+    function drawChart()
+    {
+        var data = google.visualization.arrayToDataTable(data_array);
+        var options = {
+            title: 'Company Performance',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+            };
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        chart.draw(data, options);
+    }
+
+    function ShowToast()
+    {
+        Android.ShowToast();
+    }
+    </script>
+    
+</head>
+
+<body>
+<input type="button" onClick="ShowToast()" value="Linear Graph"/>
+<div id="curve_chart" style="width: 90%; height: 90%"></div>
+</body>
+
+</html>
